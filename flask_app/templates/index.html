@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>害虫检测识别系统</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>害虫检测识别系统</h1>
+      <p>模型：{{ model_path }} ｜ 推理设备：<strong>{{ gpu }}</strong></p>
+    </header>
+
+    <section class="panel upload-panel">
+      <h2>上传图像并检测</h2>
+      <form id="detectForm">
+        <input type="file" name="image" id="imageInput" accept="image/*" required />
+        <div class="params">
+          <label>置信度
+            <input type="number" name="conf" step="0.05" min="0.1" max="0.95" value="0.25" />
+          </label>
+          <label>IOU
+            <input type="number" name="iou" step="0.05" min="0.1" max="0.95" value="0.45" />
+          </label>
+          <label>输入尺寸
+            <input type="number" name="imgsz" step="32" min="640" max="1536" value="960" />
+          </label>
+        </div>
+        <button type="submit">开始检测</button>
+      </form>
+    </section>
+
+    <section class="panel result-grid" id="resultArea">
+      <div>
+        <h3>原图</h3>
+        <img id="inputPreview" alt="输入图像" />
+      </div>
+      <div>
+        <h3>检测结果（带标识框）</h3>
+        <img id="outputPreview" alt="检测结果图像" />
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>类别统计</h3>
+      <div id="countList" class="count-list">暂无结果</div>
+      <a id="reportLink" class="download hidden" href="#">下载CSV报告</a>
+    </section>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
