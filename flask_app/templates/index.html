@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>害虫检测识别系统</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>害虫检测识别系统</h1>
+      <p>模型：{{ model_path }} ｜ 推理设备：<strong>{{ gpu }}</strong></p>
+    </header>
+
+    <section class="panel upload-panel">
+      <h2>图像上传模块</h2>
+      <form id="detectForm">
+        <input type="file" name="image" id="imageInput" accept="image/*" required />
+        <div class="params">
+          <label>置信度
+            <input type="number" name="conf" step="0.05" min="0.1" max="0.95" value="0.25" />
+          </label>
+          <label>IOU
+            <input type="number" name="iou" step="0.05" min="0.1" max="0.95" value="0.45" />
+          </label>
+          <label>输入尺寸
+            <input type="number" name="imgsz" step="32" min="640" max="1536" value="960" />
+          </label>
+        </div>
+        <button type="submit">开始检测</button>
+      </form>
+    </section>
+
+    <section class="panel result-grid" id="resultArea">
+      <div>
+        <h3>原图</h3>
+        <img id="inputPreview" alt="输入图像" />
+      </div>
+      <div>
+        <h3>检测结果（带标识框）</h3>
+        <img id="outputPreview" alt="检测结果图像" />
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>害虫数量统计</h3>
+      <p id="totalPests" class="total">总数：0</p>
+      <div id="countList" class="count-list">暂无结果</div>
+      <div id="reportLinks" class="report-links hidden">
+        <a id="summaryLink" class="download" href="#">下载汇总报告 (CSV)</a>
+        <a id="detailLink" class="download" href="#">下载明细报告 (CSV)</a>
+        <a id="jsonLink" class="download" href="#">下载结构化报告 (JSON)</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>数据管理模块：历史检测记录</h3>
+      <button id="refreshHistoryBtn" type="button">刷新历史记录</button>
+      <div id="historyList" class="history-list">暂无历史记录</div>
+    </section>
+
+    <section class="panel">
+      <h3>害虫防治方法库</h3>
+      <form id="methodForm" class="method-form">
+        <input id="pestName" type="text" placeholder="害虫名称（如：蚜虫）" required />
+        <textarea id="methodText" placeholder="防治方法..." required></textarea>
+        <button type="submit">保存/更新防治方法</button>
+      </form>
+      <div id="methodList" class="method-list">加载中...</div>
+    </section>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
