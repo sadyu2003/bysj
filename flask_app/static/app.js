@@ -125,3 +125,5 @@ methodForm.addEventListener('submit', async (e) => {
 refreshHistoryBtn.addEventListener('click', loadHistory);
 loadHistory();
 loadMethods();
+
+
