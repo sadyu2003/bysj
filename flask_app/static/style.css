@@ -37,7 +37,7 @@ header {
   gap: 10px;
   margin: 12px 0;
 }
-input, button {
+input, button, textarea {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #d6deee;
@@ -61,6 +61,11 @@ img {
   border-radius: 10px;
   background: #f8faff;
 }
+.total {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f5132;
+}
 .count-list {
   display: flex;
   flex-wrap: wrap;
@@ -73,13 +78,53 @@ img {
   border-radius: 999px;
   font-weight: 600;
 }
+.report-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
 .download {
   display: inline-block;
-  margin-top: 12px;
   color: #fff;
   background: #1f7a37;
   padding: 10px 14px;
   text-decoration: none;
   border-radius: 8px;
+}
+.history-list, .method-list {
+  margin-top: 12px;
+  display: grid;
+  gap: 10px;
+}
+.history-item, .method-item {
+  border: 1px solid #e1e7f5;
+  border-radius: 10px;
+  padding: 10px;
+  background: #f9fbff;
+}
+.history-actions {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.mini-link {
+  background: #eef3ff;
+  color: #1d3f9c;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.danger {
+  background: #c62828;
+}
+.method-form {
+  display: grid;
+  gap: 10px;
+}
+textarea {
+  min-height: 90px;
+  resize: vertical;
 }
 .hidden { display: none; }

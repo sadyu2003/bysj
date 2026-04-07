@@ -14,7 +14,7 @@
     </header>
 
     <section class="panel upload-panel">
-      <h2>上传图像并检测</h2>
+      <h2>图像上传模块</h2>
       <form id="detectForm">
         <input type="file" name="image" id="imageInput" accept="image/*" required />
         <div class="params">
@@ -44,12 +44,34 @@
     </section>
 
     <section class="panel">
-      <h3>类别统计</h3>
+      <h3>害虫数量统计</h3>
+      <p id="totalPests" class="total">总数：0</p>
       <div id="countList" class="count-list">暂无结果</div>
-      <a id="reportLink" class="download hidden" href="#">下载CSV报告</a>
+      <div id="reportLinks" class="report-links hidden">
+        <a id="summaryLink" class="download" href="#">下载汇总报告 (CSV)</a>
+        <a id="detailLink" class="download" href="#">下载明细报告 (CSV)</a>
+        <a id="jsonLink" class="download" href="#">下载结构化报告 (JSON)</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>数据管理模块：历史检测记录</h3>
+      <button id="refreshHistoryBtn" type="button">刷新历史记录</button>
+      <div id="historyList" class="history-list">暂无历史记录</div>
+    </section>
+
+    <section class="panel">
+      <h3>害虫防治方法库</h3>
+      <form id="methodForm" class="method-form">
+        <input id="pestName" type="text" placeholder="害虫名称（如：蚜虫）" required />
+        <textarea id="methodText" placeholder="防治方法..." required></textarea>
+        <button type="submit">保存/更新防治方法</button>
+      </form>
+      <div id="methodList" class="method-list">加载中...</div>
     </section>
   </div>
 
   <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>
+
